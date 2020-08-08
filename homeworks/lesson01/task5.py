@@ -20,4 +20,4 @@ if fin_result > 0:
     profit = fin_result / revenue
     print(f'Рентабельность выручки составила {profit:.2%}')
     empl = int(input('Введите количество сотрудников '))
-    print(f'Прибыль на одного сотрудника составила {round(fin_result / empl, 2)} у.е.')
+    print(f'Прибыль на одного сотрудника составила {(fin_result / empl):.2f} у.е.')
