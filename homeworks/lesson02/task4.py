@@ -10,5 +10,5 @@ while True:
 
 str_list = var_str.split()
 
-for itm in enumerate(str_list):
-    print(itm[0] + 1, itm[1][:10])
+for ind, itm in enumerate(str_list):
+    print(ind + 1, itm[:10])
