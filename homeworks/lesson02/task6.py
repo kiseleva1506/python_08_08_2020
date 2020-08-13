@@ -8,6 +8,7 @@
 # например список названий товаров.
 
 prod_list = []
+it = 1
 
 while True:
     while True:
@@ -42,7 +43,8 @@ while True:
             continue
         break
 
-    prod_list.append({'название': prod_name, 'цена': prod_price, 'количество': prod_quantity, 'ед': prod_unit})
+    prod_list.append((it, {'название': prod_name, 'цена': prod_price, 'количество': prod_quantity, 'ед': prod_unit}))
+    it += 1
 
     answer = input('Для ввода следующего товара введите +: ')
     if answer != '+':
@@ -58,6 +60,6 @@ for itm in params:
 
 for itm in prod_list:
     for param in params:
-        result[param].append(itm[param])
+        result[param].append(itm[1][param])
 
 print(result)
