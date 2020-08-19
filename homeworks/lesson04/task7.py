@@ -12,7 +12,20 @@ def fact(n):
         yield tmp
 
 
+def fact2(n):
+    res = 1
+    i = 1
+    while i < n + 1:
+        res *= i
+        i += 1
+        yield res
+
+
 func_call = fact(5)
 print(func_call)
 for el in func_call:
+    print(el, end=' ')
+print()
+
+for el in fact2(5):
     print(el, end=' ')

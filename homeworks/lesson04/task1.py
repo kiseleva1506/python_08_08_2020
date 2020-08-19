@@ -21,15 +21,12 @@ if __name__ == '__main__':
     _, *func_args = argv
     if len(func_args) != 3:
         print('Ошибка ввода. Нужно ввести 3 параметра: выработку в часах, ставка в час, премия.')
-        exit(0)
+        exit()
 
-    i = 0
-    while i < len(func_args):
-        try:
-            func_args[i] = float(func_args[i])
-            i += 1
-        except ValueError:
-            print('Ошибка ввода. Параметры должны быть числовые, разделены пробелами.')
-            exit(0)
+    try:
+        func_args = [float(itm) for itm in func_args]
+    except ValueError:
+        print('Ошибка ввода. Параметры должны быть числовые, разделены пробелами.')
+        exit()
 
     print(salary(*func_args))
