@@ -7,7 +7,7 @@
 
 my_list1 = [300, 2, 12, 44, 1, 1, 4, 10, 7, 1, 78, 123, 55]
 my_list2 = [my_list1[i] for i in range(1, len(my_list1)) if my_list1[i] > my_list1[i - 1]]
-my_list3 = [itm for i, itm in enumerate(my_list1) if i > 0 and itm > my_list1[i - 1]]
+my_list3 = [itm for i, itm in enumerate(my_list1) if i and itm > my_list1[i - 1]]
 
 print(my_list1)
 print(my_list2)
