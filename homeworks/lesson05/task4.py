@@ -17,12 +17,12 @@ receiver_file = parent_dir.joinpath('text_file4_receiver.txt')
 
 if source_file.exists():
     with source_file.open() as sf, receiver_file.open('w') as rf:
-        while True:
-            line = sf.readline()
-            if not len(line):
-                break
-            num = line.split()[0]
-            line = line.replace(num, numerals[num])
-            rf.write(line)
+        for line in sf:
+            try:
+                num = line.split()[0]
+                line = line.replace(num, numerals.get(num, num))
+                rf.write(line)
+            except IndexError:
+                continue
 else:
     print('Файл источник не существует')

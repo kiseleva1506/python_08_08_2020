@@ -11,11 +11,7 @@ min_sum = 20000.0
 file_name = Path(__file__).parent.joinpath('text_file3.txt')
 if file_name.exists():
     with file_name.open() as f:
-        while True:
-            nxt_str = f.readline()
-            if not len(nxt_str):
-                break
-
+        for nxt_str in f:
             emp_data = nxt_str.split()
             try:
                 emp_data[1] = float(emp_data[1])
