@@ -15,9 +15,7 @@ if file_name.exists():
             emp_data = nxt_str.split()
             try:
                 emp_data[1] = float(emp_data[1])
-            except ValueError:
-                continue
-            except IndexError:
+            except (ValueError, IndexError):
                 continue
 
             if emp_data[1] < min_sum:

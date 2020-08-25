@@ -13,19 +13,6 @@
 
 from pathlib import Path
 
-
-def extract_numerical(s):
-    d = ''
-    for el in s:
-        if el.isdigit():
-            d += el
-    try:
-        d = int(d)
-    except ValueError:
-        d = 0
-    return d
-
-
 classes = {}
 file_name = Path(__file__).parent.joinpath('text_file6.txt')
 
@@ -33,9 +20,9 @@ if file_name.exists():
     with file_name.open() as f:
         for line in f:
             data = line.split()
-            cl_sum = 0
-            for el in data[1:]:
-                cl_sum += extract_numerical(el)
-            classes[data[0].replace(':', '')] = cl_sum
+            classes[data[0].replace(':', '')] = data[1:]
+
+for key, value in classes.items():
+    classes[key] = sum(int(itm.split('(')[0]) for itm in value if itm.split('(')[0].isdigit())
 
 print(classes)

@@ -1,17 +1,14 @@
 """ Создать (программно) текстовый файл, записать в него программно набор чисел, разделенных пробелами.
 Программа должна подсчитывать сумму чисел в файле и выводить ее на экран. """
-
+from random import randint
 from pathlib import Path
 
 
 def create_file(file_name):
     with file_name.open('w') as f:
-        i = 1
-        while i < 11:
-            num_list = [str(round((i + j) * i / j, 2)) for j in range(20, 80, 2)]
-            f.write(' '.join(num_list))
-            f.write('\n')
-            i += 1
+        for _ in range(11):
+            num_list = [str(randint(1, 13957)) for __ in range(20)]
+            f.write(f"{' '.join(num_list)}\n")
 
 
 def sum_file(file_name):
@@ -20,7 +17,7 @@ def sum_file(file_name):
         with file_name.open() as f:
             for line in f:
                 line = line.split()
-                line = [float(el) for el in line]
+                line = map(float, line)
                 summ += sum(line)
     return summ
 

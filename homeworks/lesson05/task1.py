@@ -11,4 +11,4 @@ with file_name.open('w') as f:
         line = input()
         if not len(line):
             break
-        f.write(line + '\n')
+        f.write(f'{line}\n')

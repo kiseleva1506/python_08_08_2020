@@ -20,30 +20,15 @@ from pathlib import Path
 import json
 
 
-def financial_result(file_name):
+def read_data(file_name):
     firms = {}
-    firms_number = 0
-    av_profit = 0
-
     with file_name.open() as f:
         for line in f:
             data = line.split()
-            try:
-                result = float(data[2]) - float(data[3])
-            except ValueError:
-                continue
-
-            firms[data[0]] = result
-            if result > 0:
-                av_profit += result
-                firms_number += 1
-
-        try:
-            av_profit /= firms_number
-        except ZeroDivisionError:
-            av_profit = 0
-
-    return firms, {'average_profit': av_profit}
+            firms[data[0]] = data[2:]
+    for key, value in firms.items():
+        firms[key] = int(value[0]) - int(value[1])
+    return firms
 
 
 file_parent = Path(__file__).parent
@@ -51,7 +36,18 @@ fn = file_parent.joinpath('text_file7.txt')
 jfn = file_parent.joinpath('json_file7.json')
 
 if fn.exists():
-    data_list = financial_result(fn)
+    firms_dict = read_data(fn)
+    print(firms_dict)
+
+    try:
+        av_pr = sum(val for val in firms_dict.values() if val > 0) \
+                / sum(1 for val in firms_dict.values() if val > 0)
+    except ZeroDivisionError:
+        av_pr = 0
+
+    finance = {'average_profit': av_pr}
+
+    data_list = [firms_dict, finance]
     with jfn.open('w') as jf:
         json.dump(data_list, jf)
 else:
