@@ -35,8 +35,8 @@ class Matrix:
         :return: Matrix - результат сложения матриц
         """
         res_list = []
-        for idx, _ in enumerate(self.__data_list):
-            res_list.append([x + y for x, y, in zip(self[idx], other[idx])])
+        for idx, el in enumerate(self.__data_list):
+            res_list.append([x + y for x, y, in zip(el, other[idx])])
         return Matrix(res_list)
 
 
