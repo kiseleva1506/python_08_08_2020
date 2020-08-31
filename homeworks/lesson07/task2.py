@@ -25,7 +25,7 @@ class Clothes(ABC):
         self.cl_type = cl_type
 
     def __str__(self):
-        return f'{self.cl_type.name} {self.name}: {self.fabric_consumption()}'
+        return f'{self.cl_type.name} {self.name}: {self.fabric_consumption}'
 
     @abstractmethod
     def fabric_consumption(self):
@@ -38,6 +38,7 @@ class Coat(Clothes):
         super().__init__(name, ClothesTypes.coat)
         self.v = v
 
+    @property
     def fabric_consumption(self):
         return self.v / 6.5 + 0.5
 
@@ -48,6 +49,7 @@ class Suit(Clothes):
         super().__init__(name, ClothesTypes.suit)
         self.h = h
 
+    @property
     def fabric_consumption(self):
         return 2 * self.h + 0.3
 
@@ -57,5 +59,5 @@ if __name__ == '__main__':
     res = 0
     for itm in cl_list:
         print(itm)
-        res += itm.fabric_consumption()
+        res += itm.fabric_consumption
     print(f'Общий расход: {res}')
